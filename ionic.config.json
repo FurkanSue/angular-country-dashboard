@@ -1,0 +1,7 @@
+{
+  "name": "country-dashboard-temp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
