@@ -5,12 +5,36 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Country Dashboard</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Die Countries-Seite funktioniert 🎉
-    </ion-card-content>
-  </ion-card>
+
+  <!-- Search -->
+  <ion-searchbar
+    placeholder="Search country name or code"
+    (ionInput)="onSearch($event)">
+  </ion-searchbar>
+
+  <!-- Filter -->
+  <ion-select
+    placeholder="Filter by region"
+    (ionChange)="onRegionChange($event)">
+    <ion-select-option value="">All</ion-select-option>
+    <ion-select-option value="Africa">Africa</ion-select-option>
+    <ion-select-option value="North America">North America</ion-select-option>
+    <ion-select-option value="South America">South America</ion-select-option>
+    <ion-select-option value="Asia">Asia</ion-select-option>
+    <ion-select-option value="Europe">Europe</ion-select-option>
+    <ion-select-option value="Oceania">Oceania</ion-select-option>
+  </ion-select>
+
+  <!-- Country List -->
+  <ion-list>
+    <ion-item *ngFor="let country of filteredCountries">
+      {{ country.name }} ({{country.code}})
+    </ion-item>
+  </ion-list>
+
+  <!-- Empty State -->
+  <ion-text *ngIf="filteredCountries.length === 0">
+    No countries found.
+  </ion-text>
+
 </ion-content>
