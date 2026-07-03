@@ -10,5 +10,10 @@ export const routes: Routes = [
     path: 'country-list',
     loadComponent: () => import('./features/countries/country-list/country-list.page').then( m => m.CountryListPage)
   },
-
+  {
+  path: 'countries/:code',
+  loadComponent: () =>
+    import('./features/countries/country-detail/country-detail.page')
+      .then(m => m.CountryDetailPage),
+  },
 ];

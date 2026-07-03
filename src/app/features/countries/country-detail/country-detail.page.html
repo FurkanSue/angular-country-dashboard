@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/country-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ country?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ng-container *ngIf="country; else loading">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ country.name }}</ion-card-title>
+        <ion-card-subtitle>{{ country.continent.name }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>Capital:</strong> {{ country.capital }}</p>
+        <p><strong>Currencies:</strong> {{ getCurrencies() }}</p>
+        <p><strong>Phone:</strong> {{ country.phone }}</p>
+        <p><strong>Languages:</strong> {{ getLanguageNames() }}</p>
+        <p><strong>Code:</strong> {{ country.code }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </ng-container>
+
+  <ng-template #loading>
+    <ion-spinner></ion-spinner>
+  </ng-template>
+
+</ion-content>

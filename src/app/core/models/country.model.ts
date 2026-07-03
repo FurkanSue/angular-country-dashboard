@@ -5,6 +5,10 @@ export interface Country {
     name: string;
   };
   capital?: string;
-  emoji: string;
-  population?: number;
+  currencies: string[];
+  phone: string;
+  languages: {
+    code: string;
+    name: string;
+  }[];
 }

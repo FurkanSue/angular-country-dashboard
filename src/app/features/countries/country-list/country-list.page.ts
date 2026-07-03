@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular'
 import { Country } from 'src/app/core/models/country.model';
 import { CountryService } from 'src/app/core/services/country.services';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-country-list',
@@ -13,7 +14,8 @@ import { CountryService } from 'src/app/core/services/country.services';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    RouterModule
   ]
 })
 export class CountryListPage implements OnInit {

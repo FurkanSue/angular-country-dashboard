@@ -27,7 +27,7 @@
 
   <!-- Country List -->
   <ion-list>
-    <ion-item *ngFor="let country of filteredCountries">
+    <ion-item *ngFor="let country of filteredCountries"  [routerLink]="['/countries', country.code]">
       {{ country.name }} ({{country.code}})
     </ion-item>
   </ion-list>

@@ -19,8 +19,13 @@ export class CountryService {
             code
             name
             capital
-            emoji
+            phone
+            currencies
             continent {
+              name
+            }
+            languages {
+              code
               name
             }
           }
@@ -32,4 +37,12 @@ export class CountryService {
       .post<any>(this.apiUrl, query)
       .pipe(map(res => res.data.countries));
   }
+
+  getCountryByCode(code: string): Observable<Country | undefined> {
+  return this.getAllCountries().pipe(
+    map(countries =>
+      countries.find(c => c.code === code)
+    )
+  );
+}
 }
