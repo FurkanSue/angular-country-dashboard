@@ -6,16 +6,20 @@
 
 <ion-content class="ion-padding">
 
+  <!-- Loading -->
+  <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+  <!-- Error -->
+  <ion-text color="danger" *ngIf="error">
+    {{ error }}
+  </ion-text>
+
   <!-- Search -->
-  <ion-searchbar
-    placeholder="Search country name or code"
-    (ionInput)="onSearch($event)">
+  <ion-searchbar placeholder="Search country name or code" (ionInput)="onSearch($event)">
   </ion-searchbar>
 
   <!-- Filter -->
-  <ion-select
-    placeholder="Filter by region"
-    (ionChange)="onRegionChange($event)">
+  <ion-select placeholder="Filter by region" (ionChange)="onRegionChange($event)">
     <ion-select-option value="">All</ion-select-option>
     <ion-select-option value="Africa">Africa</ion-select-option>
     <ion-select-option value="North America">North America</ion-select-option>
@@ -26,14 +30,14 @@
   </ion-select>
 
   <!-- Country List -->
-  <ion-list>
-    <ion-item *ngFor="let country of filteredCountries"  [routerLink]="['/countries', country.code]">
+  <ion-list *ngIf="!isLoading && !error">
+    <ion-item *ngFor="let country of filteredCountries" [routerLink]="['/countries', country.code]">
       {{ country.name }} ({{country.code}})
     </ion-item>
   </ion-list>
 
   <!-- Empty State -->
-  <ion-text *ngIf="filteredCountries.length === 0">
+  <ion-text *ngIf="!isLoading && !error && filteredCountries.length === 0">
     No countries found.
   </ion-text>
 

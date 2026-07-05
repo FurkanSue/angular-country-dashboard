@@ -24,6 +24,7 @@ export class CountryListPage implements OnInit {
   searchTerm = '';
   selectedRegion = '';
   isLoading = false;
+  error: string | null = null;
 
   constructor(private countryService: CountryService) { }
 
@@ -32,13 +33,21 @@ export class CountryListPage implements OnInit {
   }
 
   loadCountries() {
-    this.isLoading = true;
+  this.isLoading = true;
+  this.error = null;
 
-    this.countryService.getAllCountries().subscribe(data => {
+  this.countryService.getAllCountries().subscribe({
+    next: (data) => {
       this.countries = data;
       this.filteredCountries = data;
-    });
-  }
+      this.isLoading = false;
+    },
+    error: () => {
+      this.error = 'Failed to load countries.';
+      this.isLoading = false;
+    }
+  });
+}
 
   onSearch(event: any) {
     this.searchTerm = event.target.value?.toLowerCase() || '';

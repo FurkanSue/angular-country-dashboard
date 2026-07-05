@@ -20,6 +20,8 @@ import { CountryService } from 'src/app/core/services/country.services';
 export class CountryDetailPage {
 
   country?: Country;
+  isLoading = true;
+  error: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,8 +34,25 @@ export class CountryDetailPage {
       this.loadCountry(code);
     }
   }
+  
   loadCountry(code: string) {
-    this.countryService.getCountryByCode(code).subscribe(country => { this.country = country })
+    this.isLoading = true;
+    this.error = null;
+
+    this.countryService.getCountryByCode(code).subscribe({
+      next: (country) => {
+        if (!country) {
+          this.error = 'Country not found.';
+        } else {
+          this.country = country;
+        }
+        this.isLoading = false;
+      },
+      error: () => {
+        this.error = 'Failed to load country.';
+        this.isLoading = false;
+      }
+    });
   }
 
   getLanguageNames(): string {
@@ -43,5 +62,5 @@ export class CountryDetailPage {
   getCurrencies(): string {
     return this.country?.currencies.join(', ') ?? '';
   }
-  
+
 }

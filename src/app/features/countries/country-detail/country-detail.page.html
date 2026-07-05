@@ -9,7 +9,15 @@
 
 <ion-content class="ion-padding">
 
-  <ng-container *ngIf="country; else loading">
+  <!-- Loading -->
+  <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+  <!-- Error -->
+  <ion-text color="danger" *ngIf="error">
+    {{ error }}
+  </ion-text>
+
+  <ng-container *ngIf="!isLoading && !error && country">
 
     <ion-card>
       <ion-card-header>
