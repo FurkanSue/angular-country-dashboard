@@ -65,3 +65,7 @@ npm install
 ```bash
 ionic serve
 ```
+
+## Author
+
+Created by **Furkan Sütcü**.
