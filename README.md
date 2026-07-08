@@ -40,12 +40,17 @@ UI logic (search & filter) is handled in the pages while data fetching is centra
 
 ## Screenshots
 
+### Homepage
 ![Homepage](screenshots/country_dashboard_homepage.png)
 
+### Filter
 ![Filter](screenshots/country_dashboard_filter.png)
 ![Filter](screenshots/country_dashboard_filter2.png)
 
+### Search
 ![Search](screenshots/country_dashboard_search.png)
+
+### Details
 ![Detailed](screenshots/country_dashboard_detail.png)
 
 ## Getting Started
